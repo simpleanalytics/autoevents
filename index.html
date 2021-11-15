@@ -121,10 +121,26 @@
     <script>
       document.querySelector("textarea").value = "";
 
-      function log(type = 'info', text) {
-        console[type](text);
-        document.querySelector("textarea").value += `${type.toUpperCase()}: ${text}\n`;
+      var logger = {
+        log: console.log,
+        error: console.error,
+        warn: console.warn,
+        info: console.info
+      };
+
+      function log(type = 'info', ...text) {
+        logger[type](text);
+        write(type, ...text)
       }
+
+      function write(type = 'info', ...text) {
+        document.querySelector("textarea").value += `${type.toUpperCase()}: ${text.join(', ')}\n`;
+      }
+
+      console.log = function() { write('log', ...arguments); logger.log.apply(console, arguments); };
+      console.error = function() { write('error', ...arguments); logger.error.apply(console, arguments); };
+      console.warn = function() { write('warn', ...arguments); logger.warn.apply(console, arguments); };
+      console.info = function() { write('info', ...arguments); logger.info.apply(console, arguments); };
 
       function scriptLoaded(ok) {
         if (ok) {
