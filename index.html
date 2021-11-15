@@ -145,7 +145,7 @@
           if (!param) return `${param}`;
           if (typeof param === 'object') return JSON.stringify(param);
           return param;
-        }).join(', ')
+        }).join(' ')
         document.querySelector("textarea").value += `${type.toUpperCase()}: ${line}\n`;
       }
 
