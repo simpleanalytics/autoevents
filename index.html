@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Simple Analytics</title>
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Simple Analytics events queue -->
+    <script>window.sa_event=window.sa_event||function(){var a=[].slice.call(arguments);window.sa_event.q?window.sa_event.q.push(a):window.sa_event.q=[a]};</script>
+
+    <style>
+      /* Basics */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      body {
+        background: #eef9ff;
+        word-break: break-word;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #415659;
+        font-family: "Space Grotesk", Arial, sans-serif;
+        font-weight: 400;
+      }
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Fonts */
+      @font-face {
+        font-family: "Space Grotesk";
+        font-weight: 500;
+        src: url("https://assets.simpleanalytics.com/fonts/SpaceGrotesk-Medium.woff2")
+            format("woff2"),
+          url("https://assets.simpleanalytics.com/fonts/SpaceGrotesk-Medium.woff")
+            format("woff");
+      }
+      @font-face {
+        font-family: "Space Grotesk";
+        font-weight: 400;
+        src: url("https://assets.simpleanalytics.com/fonts/SpaceGrotesk-Regular.woff2")
+            format("woff2"),
+          url("https://assets.simpleanalytics.com/fonts/SpaceGrotesk-Regular.woff")
+            format("woff");
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0 0 1rem 0;
+        line-height: 1.5;
+        font-weight: 500;
+      }
+      p {
+        font-size: 1rem;
+        line-height: 150%;
+      }
+      a {
+        color: #415659;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+
+      /* Layouts */
+      main {
+        padding: 2rem;
+        flex: 0 1 auto;
+        text-align: center;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #2a3638;
+        }
+        body,
+        a {
+          color: #a4bdc0;
+        }
+      }
+      
+      textarea {
+        width: 550px;
+        max-width: 100%;
+        height: 160px;
+        padding: 0.5rem;
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <svg
+        width="100px"
+        height="100px"
+        enable-background="new 0 0 100 100"
+        fill="#ff4f64"
+        version="1.0"
+        viewBox="0 0 100 100"
+        xml:space="preserve"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect x="20" y="53" width="10" height="30" />
+        <rect x="44" y="35" width="10" height="48" />
+        <rect x="68" y="18" width="10" height="65" />
+      </svg>
+      <h2>Automated events</h2>
+      <p>A test site to test automated events for Simple Analytics.</p>
+      
+      <textarea readonly>Loading JavaScript...</textarea>
+      
+      <p>In the above console you should see "auto events script is loaded", in your JavaScript console you should see events.</p>
+    </main>
+
+    <!-- Some test code for this page specifically -->
+    <script>
+      document.querySelector("textarea").value = "";
+
+      function log(type = 'info', text) {
+        console[type](text);
+        document.querySelector("textarea").value += `${type.toUpperCase()}: ${text}\n`;
+      }
+
+      function scriptLoaded(ok) {
+        if (ok) {
+          log('info', 'Auto events script is loaded');
+        }
+        else {
+          log('error', 'Auto events script is blocked on your computer');
+        }
+      }
+    </script>
+    
+    <!-- Auto events script -->
+    <script
+      async
+      data-collect="outbound,emails,downloads"
+      data-extensions="pdf,csv,docx,xlsx,zip,doc,xls"
+      data-use-title="true"
+      data-full-urls="false"
+      onerror="scriptLoaded(false)"
+      onload="scriptLoaded(true)"
+      src="https://scripts.simpleanalyticscdn.com/auto-events.js"
+    />
+  </body>
+</html>
