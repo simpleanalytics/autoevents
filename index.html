@@ -110,7 +110,14 @@
         <rect x="68" y="18" width="10" height="65" />
       </svg>
       <h2>Automated events</h2>
+      
       <p>A test site to test automated events for Simple Analytics.</p>
+      
+      <p>
+        <a href="https://example.com" target="_blank" rel="nofollow noopener">Outbound link</a><br />
+        <a href="mailto:user@example.com">Email link</a><br />
+        <a href="/file.pdf">Download PDF link</a>
+      </p>
       
       <textarea readonly>Loading JavaScript...</textarea>
       
@@ -129,7 +136,7 @@
       };
 
       function log(type = 'info', ...text) {
-        logger[type](text);
+        logger[type](...text);
         write(type, ...text)
       }
 
