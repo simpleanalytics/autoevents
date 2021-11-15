@@ -121,7 +121,10 @@
       
       <textarea readonly>Loading JavaScript...</textarea>
       
-      <p>In the above console you should see "auto events script is loaded", in your JavaScript console you should see events.</p>
+      <p>
+        In the above console you should see "Auto events" and "Normal embed" script is loaded.<br />
+        Further you should see events show up when you click the links.
+      </p>
     </main>
 
     <!-- Some test code for this page specifically -->
@@ -154,12 +157,12 @@
       console.warn = function() { write('warn', ...arguments); logger.warn.apply(console, arguments); };
       console.info = function() { write('info', ...arguments); logger.info.apply(console, arguments); };
 
-      function scriptLoaded(ok) {
+      function scriptLoaded(type, ok) {
         if (ok) {
-          log('info', 'Auto events script is loaded');
+          log('info', `${type} script is loaded`);
         }
         else {
-          log('error', 'Auto events script is blocked on your computer');
+          log('error', `${type} script is blocked on your computer`);
         }
       }
     </script>
@@ -167,6 +170,8 @@
     <!-- Normal collect script -->
     <script
       async
+      onerror="scriptLoaded('Normal embed', false)"
+      onload="scriptLoaded('Normal embed', true)"
       src="https://scripts.simpleanalyticscdn.com/latest.js"
     ></script>
     
@@ -177,8 +182,8 @@
       data-extensions="pdf,csv,docx,xlsx,zip,doc,xls"
       data-use-title="true"
       data-full-urls="false"
-      onerror="scriptLoaded(false)"
-      onload="scriptLoaded(true)"
+      onerror="scriptLoaded('Auto events', false)"
+      onload="scriptLoaded('Auto events', true)"
       src="https://scripts.simpleanalyticscdn.com/auto-events.js"
     ></script>
   </body>
