@@ -141,7 +141,7 @@
       }
 
       function write(type = 'info', ...text) {
-        document.querySelector("textarea").value += `${type.toUpperCase()}: ${text.join(', ')}\n`;
+        document.querySelector("textarea").value += `${type.toUpperCase()}: ${JSON.stringify(text)}\n`;
       }
 
       console.log = function() { write('log', ...arguments); logger.log.apply(console, arguments); };
